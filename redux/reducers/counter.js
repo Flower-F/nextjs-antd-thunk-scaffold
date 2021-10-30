@@ -1,12 +1,13 @@
 import * as types from '../constants/counter'
 
-const initState = {
+export const initialState = {
     count: 0
 }
 
-const counterReducer = (state = initState, { type }) => {
+export const counterReducer = (state = initialState, { type }) => {
     switch (type) {
         case types.INCREMENT:
+        case types.INCREMENT_ASYNC:
             return {
                 count: state.count + 1
             }
@@ -22,5 +23,3 @@ const counterReducer = (state = initState, { type }) => {
             return state
     }
 }
-
-export default counterReducer

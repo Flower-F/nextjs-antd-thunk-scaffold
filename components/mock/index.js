@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import { List, Avatar } from 'antd'
+import { List, Avatar, Spin } from 'antd'
 import axios from 'axios'
-import styles from './style.module.css'
+
+import styles from './style.module.scss'
 
 const Mock = () => {
     const [loading, setLoading] = useState(false)
@@ -14,7 +15,7 @@ const Mock = () => {
         setLoading(true)
         axios.get("/api/mock")
             .then(res => {
-                console.log('res: ', JSON.parse(res.data.userInfo))
+                // console.log('res: ', JSON.parse(res.data.userInfo))
                 setList(JSON.parse(res.data.userInfo))
                 setLoading(false)
             }).catch(err => {
@@ -25,11 +26,11 @@ const Mock = () => {
 
     useEffect(() => {
         loadData()
-        console.log('list: ', list)
     }, [])
 
     return (
         <div className={styles.list}>
+            <h2>Mock Test</h2>
             {!loading ?
                 <List
                     dataSource={list}
@@ -37,12 +38,12 @@ const Mock = () => {
                         <List.Item key={user.id}>
                             <List.Item.Meta
                                 avatar={<Avatar src={user.img} />}
-                                description={user.sex}
+                                description={`性别：${user.sex} 年龄：${user.age}`}
                             />
                             <div>{user.name}</div>
                         </List.Item>
                     )}
-                /> : null
+                /> : <Spin tip="Loading..." />
             }
         </div>
     )

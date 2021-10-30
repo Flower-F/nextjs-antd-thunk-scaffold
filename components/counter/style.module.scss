@@ -1,0 +1,16 @@
+.counter {
+    margin : 10px 0;
+    padding: 10px;
+    border : 1px solid #eee;
+
+    .increment {
+        width: 100px;
+    }
+
+    // 覆盖样式写法 
+    :global {
+        .ant-btn {
+            margin: 0 5px !important;
+        }
+    }
+}

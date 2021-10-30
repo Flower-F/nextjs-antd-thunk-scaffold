@@ -26,7 +26,7 @@ export const initializeStore = (preloadedState) => {
         store = undefined
     }
 
-    // 为了同步服务端和客户端的数据
+    // 为了同步服务端和客户端的数据 每一次都返回一个新的 store
     if (typeof window === 'undefined') return _store
     // 首次创建 store
     if (!store) store = _store
